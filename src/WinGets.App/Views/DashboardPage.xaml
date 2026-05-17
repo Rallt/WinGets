@@ -1,0 +1,88 @@
+<Page
+    x:Name="DashboardRoot"
+    x:Class="WinGets.App.Views.DashboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinGets.App.Controls">
+
+    <ScrollViewer>
+        <StackPanel Spacing="22" Padding="20">
+            <Border Style="{StaticResource CalmCardStyle}" Background="{ThemeResource PastelBlueBrush}">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Good study day" Style="{StaticResource TitleTextStyle}" />
+                    <TextBlock Text="Soft widgets, urgent deadlines, and a calm focus path for today." Style="{StaticResource BodyTextStyle}" />
+                </StackPanel>
+            </Border>
+
+            <Grid ColumnDefinitions="2*,*" ColumnSpacing="18">
+                <Border Style="{StaticResource CalmCardStyle}">
+                    <StackPanel Spacing="14">
+                        <TextBlock Text="What to study today" Style="{StaticResource SubtitleTextStyle}" />
+                        <TextBlock Text="{Binding TodayFocusModule.Name, FallbackValue=Pick a module}" Style="{StaticResource TitleTextStyle}" />
+                        <TextBlock Text="{Binding TodayFocusModule.ChecklistSummary}" Style="{StaticResource CaptionTextStyle}" />
+                        <TextBlock Text="{Binding TodayFocusTask.Title, FallbackValue=No open focus task}" Style="{StaticResource BodyTextStyle}" />
+                        <ProgressBar Value="{Binding TodayFocusModule.EffectiveProgress}" Maximum="100" />
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Button Content="Enter Zen Mode" Command="{Binding EnterZenModeCommand}" />
+                            <Button Content="Complete focus" Command="{Binding CompleteFocusTaskCommand}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource CalmCardStyle}" Background="{ThemeResource UrgentBrush}">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Urgent" Style="{StaticResource SubtitleTextStyle}" />
+                        <ItemsControl ItemsSource="{Binding UrgentEvents}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:EventCard EventData="{Binding}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+
+            <Border Style="{StaticResource CalmCardStyle}" Background="{ThemeResource OceanMistBrush}">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="18">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="Automation" Style="{StaticResource SubtitleTextStyle}" />
+                        <TextBlock Text="{Binding AutomationSummary}" Style="{StaticResource BodyTextStyle}" />
+                        <ItemsControl ItemsSource="{Binding DailyPlan}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" Style="{StaticResource CaptionTextStyle}" Margin="0,4,0,0" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                    <Button Grid.Column="1" Content="Regenerate plan" Command="{Binding GeneratePlanCommand}" VerticalAlignment="Center" />
+                </Grid>
+            </Border>
+
+            <TextBlock Text="Module progress" Style="{StaticResource SubtitleTextStyle}" />
+            <ItemsControl ItemsSource="{Binding Modules}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="2" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:ModuleCard Module="{Binding}" CardCommand="{Binding DataContext.SaveCommand, ElementName=DashboardRoot}" Margin="0,0,16,16" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <TextBlock Text="Upcoming timeline" Style="{StaticResource SubtitleTextStyle}" />
+            <ItemsControl ItemsSource="{Binding UpcomingEvents}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:EventCard EventData="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -1,0 +1,28 @@
+<Page
+    x:Class="WinGets.App.Views.EventsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:WinGets.App.Controls">
+
+    <ScrollViewer>
+        <StackPanel Spacing="22" Padding="20">
+            <TextBlock Text="Events" Style="{StaticResource TitleTextStyle}" />
+            <Border Style="{StaticResource CalmCardStyle}" Background="{ThemeResource PastelPeachBrush}">
+                <Grid ColumnDefinitions="2*,*,*,Auto" ColumnSpacing="12">
+                    <TextBox Header="Title" Text="{Binding NewEventTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Midterm, essay deadline..." />
+                    <TextBox Grid.Column="1" Header="Type" Text="{Binding NewEventType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Exam" />
+                    <CalendarDatePicker Grid.Column="2" Header="Date" Date="{Binding NewEventDate, Mode=TwoWay}" />
+                    <Button Grid.Column="3" Content="Add event" Command="{Binding AddEventCommand}" VerticalAlignment="Bottom" />
+                </Grid>
+            </Border>
+
+            <ItemsControl ItemsSource="{Binding UpcomingEvents}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:EventCard EventData="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
