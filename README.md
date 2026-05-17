@@ -10,6 +10,8 @@ WinGets is a Windows 11 study dashboard prototype built with Windows App SDK and
 - Settings page for pastel presets, widget density, and dashboard visibility toggles.
 - Zen page with a minimal focus layout and Pomodoro-style timer state text.
 - Local JSON persistence through `ApplicationData.Current.LocalFolder` so study data is recreated on first launch and saved after edits.
+- Automation card that can generate a daily study plan, create daily focus tasks, and add urgent event preparation tasks.
+- Expanded theme presets including Ocean Mist, Sunset Rose, and Forest Glow resources for future customization.
 
 ## Documentation
 

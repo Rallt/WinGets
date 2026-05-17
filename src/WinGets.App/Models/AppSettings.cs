@@ -20,4 +20,10 @@ public sealed class AppSettings
     public bool ShowProgress { get; set; } = true;
 
     public bool EnableZenAnimations { get; set; } = true;
+
+    public bool AutoCreateDailyPlan { get; set; } = true;
+
+    public int PomodoroMinutes { get; set; } = 25;
+
+    public int ShortBreakMinutes { get; set; } = 5;
 }

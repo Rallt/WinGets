@@ -8,6 +8,9 @@
             <SolidColorBrush x:Key="PastelLavenderBrush" Color="#EEE6FF" />
             <SolidColorBrush x:Key="PastelMintBrush" Color="#DDF8EA" />
             <SolidColorBrush x:Key="PastelPeachBrush" Color="#FFE5D7" />
+            <SolidColorBrush x:Key="OceanMistBrush" Color="#D8F3FF" />
+            <SolidColorBrush x:Key="SunsetRoseBrush" Color="#FFDCE5" />
+            <SolidColorBrush x:Key="ForestGlowBrush" Color="#E5F7D2" />
             <SolidColorBrush x:Key="CardBackgroundBrush" Color="#F9FBFF" />
             <SolidColorBrush x:Key="CardStrokeBrush" Color="#D9E2F2" />
             <SolidColorBrush x:Key="UrgentBrush" Color="#FFF1C7" />
@@ -19,6 +22,9 @@
             <SolidColorBrush x:Key="PastelLavenderBrush" Color="#3A315A" />
             <SolidColorBrush x:Key="PastelMintBrush" Color="#1F4E3B" />
             <SolidColorBrush x:Key="PastelPeachBrush" Color="#5A392F" />
+            <SolidColorBrush x:Key="OceanMistBrush" Color="#1B4656" />
+            <SolidColorBrush x:Key="SunsetRoseBrush" Color="#5B2636" />
+            <SolidColorBrush x:Key="ForestGlowBrush" Color="#294C22" />
             <SolidColorBrush x:Key="CardBackgroundBrush" Color="#202633" />
             <SolidColorBrush x:Key="CardStrokeBrush" Color="#394254" />
             <SolidColorBrush x:Key="UrgentBrush" Color="#594715" />

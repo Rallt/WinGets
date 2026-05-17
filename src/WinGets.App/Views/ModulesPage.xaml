@@ -28,7 +28,10 @@
                                 <ItemsControl ItemsSource="{Binding Tasks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <CheckBox Content="{Binding Title}" IsChecked="{Binding IsDone, Mode=TwoWay}" Command="{Binding DataContext.ToggleTaskCommand, ElementName=ModulesRoot}" />
+                                            <StackPanel Margin="0,4" Spacing="2">
+                                                <CheckBox Content="{Binding Title}" IsChecked="{Binding IsDone, Mode=TwoWay}" Command="{Binding DataContext.ToggleTaskCommand, ElementName=ModulesRoot}" />
+                                                <TextBlock Text="{Binding Metadata}" Style="{StaticResource CaptionTextStyle}" Margin="40,0,0,0" />
+                                            </StackPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

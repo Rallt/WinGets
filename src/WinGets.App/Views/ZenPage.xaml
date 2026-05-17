@@ -8,10 +8,15 @@
             <StackPanel Spacing="28" HorizontalAlignment="Center" MaxWidth="720">
                 <TextBlock Text="Zen Mode" Style="{StaticResource TitleTextStyle}" HorizontalAlignment="Center" />
                 <TextBlock Text="{Binding TodayFocusModule.Name, FallbackValue=Choose one gentle task}" FontFamily="Segoe UI Variable" FontSize="48" FontWeight="SemiBold" TextAlignment="Center" TextWrapping="Wrap" />
-                <TextBlock Text="{Binding TodayFocusModule.Tasks[0].Title, FallbackValue=Breathe and begin with one small action}" Style="{StaticResource SubtitleTextStyle}" TextAlignment="Center" />
+                <TextBlock Text="{Binding TodayFocusTask.Title, FallbackValue=Breathe and begin with one small action}" Style="{StaticResource SubtitleTextStyle}" TextAlignment="Center" />
+                <TextBlock Text="{Binding AutomationSummary}" Style="{StaticResource CaptionTextStyle}" TextAlignment="Center" />
                 <TextBlock Text="{Binding ZenTimerState}" Style="{StaticResource BodyTextStyle}" HorizontalAlignment="Center" />
                 <ProgressBar Value="{Binding TodayFocusModule.EffectiveProgress}" Maximum="100" Width="420" />
-                <Button Content="Start calm focus" Command="{Binding EnterZenModeCommand}" HorizontalAlignment="Center" />
+                <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
+                    <Button Content="Start focus" Command="{Binding StartPomodoroCommand}" />
+                    <Button Content="Complete task" Command="{Binding CompleteFocusTaskCommand}" />
+                    <Button Content="Reset timer" Command="{Binding ResetZenTimerCommand}" />
+                </StackPanel>
             </StackPanel>
         </Border>
     </Grid>

@@ -26,6 +26,16 @@ public sealed class StudyModule
     [JsonIgnore]
     public string ChecklistSummary => $"{CompletedTaskCount}/{Tasks.Count} tasks";
 
+    [JsonIgnore]
+    public int OpenTaskCount => Tasks.Count(task => !task.IsDone);
+
+    [JsonIgnore]
+    public StudyTask? NextTask => Tasks
+        .Where(task => !task.IsDone)
+        .OrderByDescending(task => task.Priority)
+        .ThenBy(task => task.DueDate ?? DateTimeOffset.MaxValue)
+        .FirstOrDefault();
+
     public void RefreshProgressFromTasks()
     {
         if (Tasks.Count > 0)

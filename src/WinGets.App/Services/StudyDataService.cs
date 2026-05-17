@@ -81,9 +81,9 @@ public sealed class StudyDataService
             AccentColor = "#8BB8FF",
             Tasks =
             {
-                new StudyTask { Title = "Review derivatives", IsDone = true },
-                new StudyTask { Title = "Practice integration by parts" },
-                new StudyTask { Title = "Summarize chapter 6 notes" }
+                new StudyTask { Title = "Review derivatives", IsDone = true, EstimatedMinutes = 25, Priority = 2 },
+                new StudyTask { Title = "Practice integration by parts", DueDate = DateTimeOffset.Now.AddDays(2), EstimatedMinutes = 30, Priority = 3 },
+                new StudyTask { Title = "Summarize chapter 6 notes", EstimatedMinutes = 20, Priority = 1 }
             }
         };
 
@@ -93,9 +93,9 @@ public sealed class StudyDataService
             AccentColor = "#C8B6FF",
             Tasks =
             {
-                new StudyTask { Title = "Annotate typography examples", IsDone = true },
-                new StudyTask { Title = "Build spacing flash cards", IsDone = true },
-                new StudyTask { Title = "Prepare critique questions" }
+                new StudyTask { Title = "Annotate typography examples", IsDone = true, EstimatedMinutes = 25, Priority = 1 },
+                new StudyTask { Title = "Build spacing flash cards", IsDone = true, EstimatedMinutes = 20, Priority = 1 },
+                new StudyTask { Title = "Prepare critique questions", DueDate = DateTimeOffset.Now.AddDays(5), EstimatedMinutes = 25, Priority = 2 }
             }
         };
 
@@ -105,8 +105,8 @@ public sealed class StudyDataService
             AccentColor = "#B7F4D8",
             Tasks =
             {
-                new StudyTask { Title = "Outline essay argument" },
-                new StudyTask { Title = "Collect primary source quotes" }
+                new StudyTask { Title = "Outline essay argument", DueDate = DateTimeOffset.Now.AddDays(1), EstimatedMinutes = 30, Priority = 3 },
+                new StudyTask { Title = "Collect primary source quotes", EstimatedMinutes = 25, Priority = 2 }
             }
         };
 

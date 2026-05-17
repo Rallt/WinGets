@@ -32,6 +32,7 @@ REQUIRED_FILES = [
     "src/WinGets.App/Models/AppSettings.cs",
     "src/WinGets.App/Models/StudyData.cs",
     "src/WinGets.App/Services/StudyDataService.cs",
+    "src/WinGets.App/Services/StudyAutomationService.cs",
     "src/WinGets.App/Services/ThemeService.cs",
     "src/WinGets.App/ViewModels/ObservableObject.cs",
     "src/WinGets.App/ViewModels/RelayCommand.cs",
@@ -63,6 +64,9 @@ REQUIRED_BRUSHES = [
     "CardBackgroundBrush",
     "CardStrokeBrush",
     "UrgentBrush",
+    "ForestGlowBrush",
+    "SunsetRoseBrush",
+    "OceanMistBrush",
 ]
 
 
@@ -127,6 +131,22 @@ def test_persistence_and_default_data_requirements() -> None:
         assert_contains(service, needle, "persistence implementation")
 
 
+def test_automation_service_requirements() -> None:
+    automation = read("src/WinGets.App/Services/StudyAutomationService.cs")
+    for needle in [
+        "ApplyDailyAutomation",
+        "BuildDailyPlan",
+        "GetRecommendedFocusModule",
+        "GetRecommendedFocusTask",
+        "EnsureUrgentEventPrepTasks",
+    ]:
+        assert_contains(automation, needle, "automation service member")
+
+    settings = read("src/WinGets.App/Models/AppSettings.cs")
+    for needle in ["AutoCreateDailyPlan", "PomodoroMinutes", "ShortBreakMinutes"]:
+        assert_contains(settings, needle, "automation setting")
+
+
 def test_view_model_exposes_required_commands_and_views() -> None:
     view_model = read("src/WinGets.App/ViewModels/DashboardViewModel.cs")
     for needle in [
@@ -137,6 +157,12 @@ def test_view_model_exposes_required_commands_and_views() -> None:
         "AddEventCommand",
         "SaveCommand",
         "EnterZenModeCommand",
+        "TodayFocusTask",
+        "DailyPlan",
+        "ResetZenTimerCommand",
+        "StartPomodoroCommand",
+        "CompleteFocusTaskCommand",
+        "GeneratePlanCommand",
     ]:
         assert_contains(view_model, needle, "dashboard view model member")
 

@@ -52,6 +52,8 @@ After launching the app on Windows, verify:
 - Events dated today through three days ahead show the urgent styling and label.
 - Settings toggles and preset/layout selections save to the local JSON file.
 - Zen Mode shows the current focus module/task and updates the timer state when starting focus.
+- Generate or review automation from the Dashboard and confirm generated tasks are not duplicated after restart.
+- Choose the Ocean Mist, Sunset Rose, and Forest Glow presets in Settings and confirm the selected value persists.
 
 ## Cross-platform smoke test
 

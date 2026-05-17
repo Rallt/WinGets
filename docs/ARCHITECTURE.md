@@ -10,7 +10,7 @@ WinGets/
 ├── src/
 │   └── WinGets.App/
 │       ├── Models/       # Serializable study data contracts
-│       ├── Services/     # Persistence and theme helpers
+│       ├── Services/     # Persistence, automation, and theme helpers
 │       ├── ViewModels/   # MVVM state and command wiring
 │       ├── Views/        # Navigation pages
 │       ├── Controls/     # Reusable cards
@@ -23,16 +23,28 @@ WinGets/
 1. `App.OnLaunched` creates the shared `DashboardViewModel`, loads persisted study data through `StudyDataService`, and opens `MainWindow`.
 2. `MainWindow` hosts a `NavigationView` with Dashboard, Modules, Events, Zen, and Settings pages.
 3. Each page binds to `App.Current.ViewModel`, keeping the prototype intentionally small and easy to follow.
-4. Commands in `DashboardViewModel` mutate the in-memory `StudyData`, call `StudyDataService.SaveAsync`, and raise property change notifications for computed dashboard sections.
+4. Commands in `DashboardViewModel` mutate the in-memory `StudyData`, run lightweight planning automation, call `StudyDataService.SaveAsync`, and raise property change notifications for computed dashboard sections.
 
 ## Data model
 
 - `StudyData` is the JSON root object and contains modules, events, and settings.
 - `StudyModule` stores module metadata and checklist tasks. `EffectiveProgress` computes progress from completed tasks when tasks exist.
 - `StudyEvent` stores exam/deadline metadata. `IsUrgent` is true when the event date is today through three days from today.
-- `AppSettings` stores dashboard toggles, the pastel preset name, widget layout size, and Zen animation preference.
+- `AppSettings` stores dashboard toggles, the pastel preset name, widget layout size, Zen animation preference, automation enablement, and Pomodoro/break lengths.
 
 The models are deliberately simple POCO-style classes so `System.Text.Json` can serialize them without extra dependencies.
+
+## Automation
+
+`StudyAutomationService` keeps automation local and deterministic. It can:
+
+- Recommend the lowest-progress module with open tasks as today's focus.
+- Recommend the next task by priority and due date.
+- Create one daily focus task when automation is enabled and no daily task exists yet.
+- Create preparation tasks for urgent events that are within the three-day urgency window.
+- Build short daily plan text used by the Dashboard automation card.
+
+Automation is intentionally conservative: it uses notes markers to avoid duplicating generated tasks and persists changes through the same JSON save path as manual edits.
 
 ## Persistence
 
@@ -42,7 +54,7 @@ The models are deliberately simple POCO-style classes so `System.Text.Json` can 
 
 `App.xaml` merges three style dictionaries:
 
-- `Styles/Colors.xaml` contains light and dark theme dictionaries with soft pastel resources.
+- `Styles/Colors.xaml` contains light and dark theme dictionaries with soft pastel resources, including Ocean Mist, Sunset Rose, and Forest Glow presets.
 - `Styles/Typography.xaml` centralizes Segoe UI Variable title, subtitle, body, and caption text styles.
 - `Styles/Controls.xaml` defines rounded, touch-friendly defaults for buttons, inputs, progress bars, and cards.
 

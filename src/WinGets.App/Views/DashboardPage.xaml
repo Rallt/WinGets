@@ -20,8 +20,12 @@
                         <TextBlock Text="What to study today" Style="{StaticResource SubtitleTextStyle}" />
                         <TextBlock Text="{Binding TodayFocusModule.Name, FallbackValue=Pick a module}" Style="{StaticResource TitleTextStyle}" />
                         <TextBlock Text="{Binding TodayFocusModule.ChecklistSummary}" Style="{StaticResource CaptionTextStyle}" />
+                        <TextBlock Text="{Binding TodayFocusTask.Title, FallbackValue=No open focus task}" Style="{StaticResource BodyTextStyle}" />
                         <ProgressBar Value="{Binding TodayFocusModule.EffectiveProgress}" Maximum="100" />
-                        <Button Content="Enter Zen Mode" Command="{Binding EnterZenModeCommand}" />
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Button Content="Enter Zen Mode" Command="{Binding EnterZenModeCommand}" />
+                            <Button Content="Complete focus" Command="{Binding CompleteFocusTaskCommand}" />
+                        </StackPanel>
                     </StackPanel>
                 </Border>
 
@@ -38,6 +42,24 @@
                     </StackPanel>
                 </Border>
             </Grid>
+
+
+            <Border Style="{StaticResource CalmCardStyle}" Background="{ThemeResource OceanMistBrush}">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="18">
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="Automation" Style="{StaticResource SubtitleTextStyle}" />
+                        <TextBlock Text="{Binding AutomationSummary}" Style="{StaticResource BodyTextStyle}" />
+                        <ItemsControl ItemsSource="{Binding DailyPlan}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" Style="{StaticResource CaptionTextStyle}" Margin="0,4,0,0" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                    <Button Grid.Column="1" Content="Regenerate plan" Command="{Binding GeneratePlanCommand}" VerticalAlignment="Center" />
+                </Grid>
+            </Border>
 
             <TextBlock Text="Module progress" Style="{StaticResource SubtitleTextStyle}" />
             <ItemsControl ItemsSource="{Binding Modules}">

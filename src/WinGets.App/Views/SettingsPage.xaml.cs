@@ -14,6 +14,9 @@ public sealed partial class SettingsPage : Page
         {
             "Lavender Calm" => 1,
             "Mint Focus" => 2,
+            "Ocean Mist" => 3,
+            "Sunset Rose" => 4,
+            "Forest Glow" => 5,
             _ => 0
         };
         LayoutCombo.SelectedIndex = (int)App.Current.ViewModel.Settings.WidgetLayoutSize;

@@ -12,6 +12,9 @@
                         <ComboBoxItem Content="Pastel Blue" />
                         <ComboBoxItem Content="Lavender Calm" />
                         <ComboBoxItem Content="Mint Focus" />
+                        <ComboBoxItem Content="Ocean Mist" />
+                        <ComboBoxItem Content="Sunset Rose" />
+                        <ComboBoxItem Content="Forest Glow" />
                     </ComboBox>
                     <ComboBox x:Name="LayoutCombo" Header="Widget layout size" SelectedIndex="1" SelectionChanged="LayoutCombo_SelectionChanged">
                         <ComboBoxItem Content="Compact" />
@@ -22,6 +25,11 @@
                     <CheckBox Content="Show tasks" IsChecked="{Binding Settings.ShowTasks, Mode=TwoWay}" Command="{Binding SaveCommand}" />
                     <CheckBox Content="Show progress" IsChecked="{Binding Settings.ShowProgress, Mode=TwoWay}" Command="{Binding SaveCommand}" />
                     <CheckBox Content="Enable Zen animations" IsChecked="{Binding Settings.EnableZenAnimations, Mode=TwoWay}" Command="{Binding SaveCommand}" />
+                    <CheckBox Content="Automatically create daily focus and urgent prep tasks" IsChecked="{Binding Settings.AutoCreateDailyPlan, Mode=TwoWay}" Command="{Binding SaveCommand}" />
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <TextBox Header="Pomodoro minutes" Text="{Binding Settings.PomodoroMinutes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox Grid.Column="1" Header="Short break minutes" Text="{Binding Settings.ShortBreakMinutes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
                     <Button Content="Save settings" Command="{Binding SaveCommand}" HorizontalAlignment="Left" />
                 </StackPanel>
             </Border>
