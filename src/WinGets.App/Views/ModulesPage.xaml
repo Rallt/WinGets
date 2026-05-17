@@ -1,0 +1,46 @@
+<Page
+    x:Name="ModulesRoot"
+    x:Class="WinGets.App.Views.ModulesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ScrollViewer>
+        <StackPanel Spacing="22" Padding="20">
+            <TextBlock Text="Modules" Style="{StaticResource TitleTextStyle}" />
+            <Border Style="{StaticResource CalmCardStyle}" Background="{ThemeResource PastelLavenderBrush}">
+                <Grid ColumnDefinitions="2*,*,Auto" ColumnSpacing="12">
+                    <TextBox Header="Module name" Text="{Binding NewModuleName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Physics, Literature..." />
+                    <TextBox Grid.Column="1" Header="Accent hex" Text="{Binding NewModuleAccent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="#8BB8FF" />
+                    <Button Grid.Column="2" Content="Add module" Command="{Binding AddModuleCommand}" VerticalAlignment="Bottom" />
+                </Grid>
+            </Border>
+
+            <ItemsControl ItemsSource="{Binding Modules}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CalmCardStyle}">
+                            <StackPanel Spacing="14">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock Text="{Binding Name}" Style="{StaticResource SubtitleTextStyle}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding ChecklistSummary}" Style="{StaticResource CaptionTextStyle}" />
+                                </Grid>
+                                <ProgressBar Value="{Binding EffectiveProgress}" Maximum="100" />
+                                <ItemsControl ItemsSource="{Binding Tasks}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <CheckBox Content="{Binding Title}" IsChecked="{Binding IsDone, Mode=TwoWay}" Command="{Binding DataContext.ToggleTaskCommand, ElementName=ModulesRoot}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                                    <TextBox PlaceholderText="Add a checklist step" Text="{Binding DataContext.NewTaskTitle, ElementName=ModulesRoot, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <Button Grid.Column="1" Content="Add task" Command="{Binding DataContext.AddTaskCommand, ElementName=ModulesRoot}" CommandParameter="{Binding}" />
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -1,0 +1,29 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="PastelBlueBrush" Color="#DCEBFF" />
+            <SolidColorBrush x:Key="PastelLavenderBrush" Color="#EEE6FF" />
+            <SolidColorBrush x:Key="PastelMintBrush" Color="#DDF8EA" />
+            <SolidColorBrush x:Key="PastelPeachBrush" Color="#FFE5D7" />
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="#F9FBFF" />
+            <SolidColorBrush x:Key="CardStrokeBrush" Color="#D9E2F2" />
+            <SolidColorBrush x:Key="UrgentBrush" Color="#FFF1C7" />
+            <SolidColorBrush x:Key="PageBackgroundBrush" Color="#F4F7FC" />
+            <SolidColorBrush x:Key="SubtleTextBrush" Color="#667085" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="PastelBlueBrush" Color="#233B5E" />
+            <SolidColorBrush x:Key="PastelLavenderBrush" Color="#3A315A" />
+            <SolidColorBrush x:Key="PastelMintBrush" Color="#1F4E3B" />
+            <SolidColorBrush x:Key="PastelPeachBrush" Color="#5A392F" />
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="#202633" />
+            <SolidColorBrush x:Key="CardStrokeBrush" Color="#394254" />
+            <SolidColorBrush x:Key="UrgentBrush" Color="#594715" />
+            <SolidColorBrush x:Key="PageBackgroundBrush" Color="#141821" />
+            <SolidColorBrush x:Key="SubtleTextBrush" Color="#B9C0CF" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>
